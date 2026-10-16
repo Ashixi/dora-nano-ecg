@@ -18,7 +18,7 @@ It is neither a conventional deep neural network reliant on brute-force matrix m
   Instead of dense linear algebra and deep feedforward matrices, computation is governed by **temporal and phase resonance** within a bounded state space. The system naturally activates when incoming signal dynamics fall into resonance with internalized patterns.
 
 * **A — Architecture:**  
-  A general-purpose neural framework designed for continuous, dynamic temporal signals.
+  Do you really want me to explain what "architecture" means? [Fine, here's Wikipedia](https://en.wikipedia.org/wiki/Software_architecture). In our context: a unified neural framework designed for continuous, dynamic temporal signals.
 
 ---
 
