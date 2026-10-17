@@ -60,3 +60,50 @@ Evaluated under the rigorous inter-patient testing standard (DS2 unseen test coh
 * **Zero Future Lookahead:** No reliance on post-RR intervals or non-causal smoothing filters. Each beat is evaluated strictly upon arrival.
 * **Zero Hardcoded Constants:** No patient-specific thresholds or signal prototypes are baked into the compiled binary.
 
+---
+
+### Quickstart: Reproducing the Benchmark
+
+You can reproduce the exact benchmark results on your machine using the precompiled zero-dependency kernel.
+
+#### 1. Clone the repository
+```bash
+git clone https://github.com/Ashixi/dora-nano-ecg.git
+cd dora-nano-ecg
+```
+
+#### 2. Provide the MIT-BIH Arrhythmia Database
+Download the official MIT-BIH Arrhythmia Database records (`.dat` and `.atr` files) from [PhysioNet MIT-BIH](https://physionet.org/content/mitdb/1.0.0/) into a `./mitdb` or `./data/mitdb` directory.
+
+#### 3. Run the benchmark
+```bash
+cargo run --release
+```
+Or specify a custom path to your dataset folder:
+```bash
+cargo run --release -- path/to/mitdb
+```
+
+The benchmark runner will evaluate all 22 unseen DS2 patients (**44,168 beats**) in ~400 ms and output the complete patient-by-patient validation table.
+
+---
+
+### Project License & Intellectual Property Notice
+
+* **Benchmark Runner & Data Parsers (`src/`, `build.rs`):** Released under the permissive MIT License.
+* **DORA Precompiled Inference Kernel (`lib/`, `include/`):** Provided for non-commercial research, academic benchmarking, and technical evaluation. All underlying somatic equations, resonance topologies, and core learning mechanics remain proprietary intellectual property. For commercial licensing, hardware integration, or clinical pilot inquiries, please contact the author.
+
+---
+
+### Author & Support
+
+Developed by **Andrii Shumko** — Physicist-Engineer-Programmer based in Prague, Czech Republic.
+
+* **GitHub:** [@Ashixi](https://github.com/Ashixi)
+* **Goal:** Building an autonomous, predictive cardiac monitoring wearable powered by low-power edge silicon.
+
+If you find this research valuable or would like to support independent deep-tech development:
+* **Support / Donate:** `[Monobank / Buy Me a Coffee / Crypto]`
+* **Inquiries & Collaboration:** `[Email / Telegram / LinkedIn]`
+
+
