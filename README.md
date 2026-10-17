@@ -108,13 +108,15 @@ The benchmark runner will evaluate all 22 unseen DS2 patients (**44,168 beats**)
 
 ### Author & Support
 
-Developed by **Andrii Shumko** — Physicist-Engineer-Programmer based in Prague, Czech Republic.
+Developed by **Andrii Shumko** — Independent Engineer based in Prague, Czech Republic.
 
 * **GitHub:** [@Ashixi](https://github.com/Ashixi)
-* **Goal:** Building an autonomous, predictive cardiac monitoring wearable powered by low-power edge silicon.
+* **LinkedIn:** [Andrii Shumko](https://www.linkedin.com/in/andrii-shumko)
+* **X (Twitter):** [@andrii_shumko](https://x.com/andrii_shumko)
 
-If you find this research valuable or would like to support independent deep-tech development:
-* **Support / Donate:** `[Monobank / Buy Me a Coffee / Crypto]`
-* **Inquiries & Collaboration:** `[Email / Telegram / LinkedIn]`
+If you find this research valuable or would like to support independent hardware and R&D development:
+* ☕ **Buy Me a Coffee:** [buymeacoffee.com/andriishumko](https://buymeacoffee.com/andriishumko)
+* 🏦 **Monobank Jar:** [send.monobank.ua/jar/Act5bqpchr](https://send.monobank.ua/jar/Act5bqpchr)
+
 
 
