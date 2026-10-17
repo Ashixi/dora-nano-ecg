@@ -118,5 +118,6 @@ If you find this research valuable or would like to support independent hardware
 * ☕ **Buy Me a Coffee:** [buymeacoffee.com/andriishumko](https://buymeacoffee.com/andriishumko)
 * 🏦 **Monobank Jar:** [send.monobank.ua/jar/Act5bqpchr](https://send.monobank.ua/jar/Act5bqpchr)
 
+---
 
-
+<p align="center">🇺🇦 Crafted with dedication by an independent Ukrainian engineer.</p>
