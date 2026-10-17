@@ -32,16 +32,27 @@ Due to its foundational principles, the resulting engine does not rely on artifi
 
 ### Key Technical Specifications
 
-DORA achieves high-precision inference on ultra-constrained edge silicon without relying on cloud connectivity, deep neural accelerators, or floating-point co-processors:
+DORA achieves high-precision inference on ultra-constrained edge silicon without relying on cloud connectivity, heavy tensor accelerators, or external co-processors:
 
-| Specification | Measured Value | Practical Context / Hardware Target |
+| Specification | Value | Status / Hardware Context |
 | :--- | :--- | :--- |
-| **Binary Footprint** | **18.5 KB** | Zero dynamic heap allocations (`#![no_std]` bare-metal compatible) |
-| **Inference Latency** | **2.62 µs** / beat | Evaluated on standard x86_64 @ 3.4 GHz |
-| **MCU Execution Timing** | **~500 µs** (32,000 cycles) | ARM Cortex-M4 @ 64 MHz with hardware FPU |
-| **Algorithmic Complexity** | **18,280 FLOPs** / beat | Deterministic execution time, zero jitter |
-| **Energy Consumption** | **10.62 µJ** / cardiac cycle | Enables **99.94% Deep Sleep / WFI** duty cycle |
-| **Theoretical Battery Life** | **9.0+ years** | Continuous 24/7 monitoring on a single 350 mAh coin cell |
+| **Binary Footprint** | **18.5 KB** | Measured (MSVC/LLVM `.text` + `.rdata`, zero dynamic allocations) |
+| **Inference Latency** | **3.47 µs** / beat | Measured on host x86_64 @ 3.4 GHz |
+| **Algorithmic Complexity** | **18,280 FLOPs** / beat | Deterministic operation count (exact additions & multiplications) |
+| **MCU Execution Timing** | **~500 µs** (~32,000 cycles) | Analytical model: ARM Cortex-M4 @ 64 MHz with FPU |
+| **CPU Core Energy** | **~10.62 µJ** / cardiac cycle | Analytical model: enables **99.94% Deep Sleep / WFI** duty cycle |
+| **Theoretical CPU Autonomy** | **9.0+ years** | Theoretical compute budget on a 350 mAh coin cell (CPU only) |
+
+> **Engineering Transparency Note:** Binary footprint, algorithmic FLOP count, and host latency are directly measured. The Cortex-M4 cycle count and energy figures are derived from an analytical architectural model based on ARM instruction execution timings. Full empirical hardware profiling (including ADC analog frontend and telemetry overhead) will be conducted on physical silicon boards in Phase 2. See [docs/HARDWARE_PROFILE.md](docs/HARDWARE_PROFILE.md) for full derivations.
+
+---
+
+### Technical Documentation & Architecture Deep-Dives
+
+* 🔬 **[Hardware & Energy Feasibility Profile](docs/HARDWARE_PROFILE.md):** Detailed microarchitectural cycle modeling on ARM Cortex-M4F, instruction timings (`VMLA.F32`), and theoretical energy budgets.
+* 🛡️ **[Clinical Safety & Defibrillation Protocol](docs/CLINICAL_SAFETY.md):** Multi-Zone ICD state machine, ectopic prematurity gating, and the physiological basis for 0 false shocks.
+* 💻 **[C-ABI Integration Reference](docs/C_API_REFERENCE.md):** Quickstart guide and code examples for linking `dora_nano.h` into bare-metal C/C++ firmware.
+
 
 ---
 
@@ -50,7 +61,7 @@ DORA achieves high-precision inference on ultra-constrained edge silicon without
 Evaluated under the rigorous inter-patient testing standard (DS2 unseen test cohort: **22 patients, 44,168 total cardiac beats**):
 
 * **Ventricular Ectopic Sensitivity (Class V Recall):** **98.01%** (2,855 of 2,913 events detected)
-* **Normal Sinus Rhythm Specificity (Class N):** **98.61%**
+* **Normal Sinus Rhythm Specificity (Class N):** **98.27%** (38,555 of 39,234 normal beats)
 * **Defibrillation False Shocks on Normal Heart:** **0 / 39,234 beats (0.0000%)**
 * **Normal Heart ICD Safety Score:** **100.0000%**
 
