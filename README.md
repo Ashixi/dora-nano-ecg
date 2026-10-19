@@ -37,13 +37,19 @@ DORA achieves high-precision inference on ultra-constrained edge silicon without
 | Specification | Value | Status / Hardware Context |
 | :--- | :--- | :--- |
 | **Binary Footprint** | **18.5 KB** | Measured (MSVC/LLVM `.text` + `.rdata`, zero dynamic allocations) |
-| **Inference Latency** | **3.47 µs** / beat | Measured on host x86_64 @ 3.4 GHz |
+| **Host Latency (x86_64)** | **3.47 µs** / beat | Measured on host x86_64 @ 3.4 GHz |
+| **Physical MCU Latency** | **111.36 µs** / beat | **Measured directly on silicon:** Seeed XIAO ESP32-S3 @ 240 MHz |
+| **Physical MCU Duty Cycle** | **0.0139% active** | **99.986% Deep Sleep capability** (@ 75 BPM cardiac cycle) |
 | **Algorithmic Complexity** | **18,280 FLOPs** / beat | Deterministic operation count (exact additions & multiplications) |
-| **MCU Execution Timing** | **~500 µs** (~32,000 cycles) | Analytical model: ARM Cortex-M4 @ 64 MHz with FPU |
-| **CPU Core Energy** | **~10.62 µJ** / cardiac cycle | Analytical model: enables **99.94% Deep Sleep / WFI** duty cycle |
-| **Theoretical CPU Autonomy** | **9.0+ years** | Theoretical compute budget on a 350 mAh coin cell (CPU only) |
+| **Clinical Safety on Silicon** | **0 False Shocks** | Measured across all 44,168 beats on ESP32-S3 hardware |
 
-> **Engineering Transparency Note:** Binary footprint, algorithmic FLOP count, and host latency are directly measured. The Cortex-M4 cycle count and energy figures are derived from an analytical architectural model based on ARM instruction execution timings. Full empirical hardware profiling (including ADC analog frontend and telemetry overhead) will be conducted on physical silicon boards in Phase 2. See [docs/HARDWARE_PROFILE.md](docs/HARDWARE_PROFILE.md) for full derivations.
+> **Empirical Silicon Validation:** The entire 44,168-beat MIT-BIH DS2 benchmark has been executed directly on physical microcontroller hardware using a **Seeed Studio XIAO ESP32-S3** (Dual-Core Xtensa LX7 @ 240 MHz) via Hardware-in-the-Loop (HIL). The inference kernel runs in **111.36 µs** on silicon, achieving 98.01% V-recall and 0 false shocks with zero dynamic memory allocation. See [docs/HARDWARE_PROFILE.md](docs/HARDWARE_PROFILE.md) for full empirical per-patient tables.
+
+---
+
+### Firmware & Hardware Reference
+
+* ⚡ **[ESP32-S3 Firmware & HIL Testbench](firmware/esp32s3/):** Complete PlatformIO project to compile, flash, and verify DoraNano on Seeed Studio XIAO ESP32-S3 hardware.
 
 ---
 
